@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 
-namespace iotNet.Database
+namespace ACN.Database
 {
     public class dbConn : IDisposable
     {
@@ -17,6 +17,7 @@ namespace iotNet.Database
         public dbConn(){
             connString = ConfigurationManager.ConnectionStrings["ACN"].ConnectionString;
             string password = ConfigurationManager.AppSettings["dbPassword"];
+            connString = connString.Replace("{password}", password);
             conn = new SqlConnection(connString);
             conn.Open();
         }
@@ -24,14 +25,29 @@ namespace iotNet.Database
         // public functions
         public string[] getAreaList()
         {
-            return null;
+            string sqlString = "SELECT fdName as area FROM tblArea";
+            DataTable results = query(sqlString);
+            return results.Rows.Cast<DataRow>().Select(row => (string)row["area"]).ToArray();
+        }
+
+        public DataTable getSensorTable(string area)
+        {
+            string sqlString = "SELECT * FROM vwSensorRT WHERE areaName='{area}'";
+            sqlString = sqlString.Replace("{area}", area);
+            DataTable results = query(sqlString);
+            return results;
         }
 
         // private helper functions
-
+        private DataTable query(string sqlString)
+        {
+            DataTable returnVal = new DataTable();
+            SqlCommand command = new SqlCommand(sqlString, conn);
+            returnVal.Load(command.ExecuteReader());
+            return returnVal;
+        }
 
         // Interface implementations
-
         public void Dispose()
         {
             conn.Close();

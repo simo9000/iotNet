@@ -1,8 +1,9 @@
-﻿
-using iotNet.Database;
+﻿using ACN.Database;
+using ACN.Objects;
 using Nancy;
+using Nancy.ModelBinding;
 
-namespace iotNet.Modules
+namespace ACN.Modules
 {
     public class AdminModule : NancyModule
     {
@@ -12,10 +13,15 @@ namespace iotNet.Modules
             Get["/"] = parameters =>
             {
                 dbConn db = new dbConn();
+                string[] areas = this.BindTo(db.getAreaList());
                 db.Dispose();
-                return View["index"];
+                return View["areaListView",areas];
             };
 
+            Get["/RT_values/for/{area}"] = parameters =>
+            {
+
+            };
         }
     }
 }
