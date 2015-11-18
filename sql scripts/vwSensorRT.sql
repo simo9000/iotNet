@@ -13,6 +13,6 @@ SELECT tblSensor.PK_ID as ID,
 FROM tblSensor
 	INNER JOIN tblArea
 		on tblArea.PK_ID = tblSensor.FK_Area_ID
-	INNER JOIN tblSensorData
+	LEFT JOIN tblSensorData
 		ON tblSensor.PK_ID = tblSensorData.FK_Sensor_ID
 WHERE tblSensorData.fdTimeStamp = (Select max(fdTimeStamp) from tblSensorData)
