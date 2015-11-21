@@ -65,7 +65,9 @@
     <Compile Include="Modules\AdminModule.cs" />
     <Compile Include="Objects\area.cs" />
     <Compile Include="Objects\sensor.cs" />
+    <Compile Include="Objects\sensorData.cs" />
     <Compile Include="Objects\tolerance.cs" />
+    <Compile Include="Objects\util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

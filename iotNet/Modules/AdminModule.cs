@@ -15,12 +15,18 @@ namespace ACN.Modules
                 dbConn db = new dbConn();
                 string[] areas = this.BindTo(db.getAreaList());
                 db.Dispose();
-                return View["areaListView",areas];
+                db = null;
+                var areaListView = View["areaListView",areas];
+                areas = null;
+                return areaListView;
             };
 
             Get["/RT_values/for/{area}"] = parameters =>
             {
-
+                area area = this.BindTo(new area(parameters.area));
+                var RtView = View["RtView", area];
+                area = null;
+                return RtView;
             };
         }
     }

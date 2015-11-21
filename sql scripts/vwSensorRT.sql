@@ -4,11 +4,12 @@ GO
 
 CREATE VIEW dbo.vwSensorRT AS
 SELECT tblSensor.PK_ID as ID,
-	   fdDescription as sDESC,
-	   fdPressure as pressure,
-	   fdHumidity as humidity,
-	   fdBrightness as brightness,
-	   fdTemperature as temperature,
+	   fdTimeStamp as fdTimeStamp,
+	   fdDescription as fdDescription,
+	   fdPressure as fdPressure,
+	   fdHumidity as fdHumidity,
+	   fdBrightness as fdBrightness,
+	   fdTemperature as fdTemperature,
 	   tblArea.fdName as areaName
 FROM tblSensor
 	INNER JOIN tblArea
