@@ -11,7 +11,6 @@ namespace ACN.Objects
         private int id;
         private string networkAddress;
         public string description;
-        public tolerance t_temperature, t_pressure, t_humidity, t_light;
         public sensorData currentConditions;
 
         public sensor(DataRow row)
