@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ACN - @Model.Name</title>
+</head>
+<body>
+    <h3>ACN Values for @Model.Name</h3>
+    <table border="1">
+        <tr>
+            <th>Sensor Description</th>
+            <th>Temperature (DegF)</th>
+            <th>Pressure</th>
+            <th>Humidity</th>
+            <th>Light</th>
+        </tr>
+        @Each.sensors
+            <tr>
+                <td>@Current.description</td>
+                <td>@Current.currentConditions.temperature</td>
+                <td>@Current.currentConditions.pressure</td>
+                <td>@Current.currentConditions.humdity</td>
+                <td>@Current.currentConditions.light</td>
+            </tr>
+        @EndEach
+    </table>
+</body>
+</html>

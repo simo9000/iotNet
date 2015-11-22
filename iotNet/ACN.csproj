@@ -57,6 +57,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="Views\areaListView.html" />
+    <Content Include="Views\RtView.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

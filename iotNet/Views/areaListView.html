@@ -4,10 +4,10 @@
     <title>ACN Area List</title>
 </head>
 <body>
-    <h3>Select Area</h3>
+    <h3>Select Area:</h3>
     <ul>
         @Each
-            <li><a href="#">@Current</a></li>
+            <li><a href="@Path['~/RT_values/for/@Current']">@Current</a></li>
         @EndEach
     </ul>
 </body>
