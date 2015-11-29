@@ -10,10 +10,10 @@
             }).done(function (sensors) {
                 for (var i = 0; i < sensors.length ; i++) {
                     var row = $('#' + sensors[i].id);
-                    row.find('#temperature').text(sensors[i].CurrentConditions.Temperature);
-                    row.find('#pressure').text(sensors[i].CurrentConditions.Pressure);
-                    row.find('#humidity').text(sensors[i].CurrentConditions.Humidity);
-                    row.find('#light').text(sensors[i].CurrentConditions.Light);
+                    row.find('#temperature').text(sensors[i].currentConditions.temperature);
+                    row.find('#pressure').text(sensors[i].currentConditions.pressure);
+                    row.find('#humidity').text(sensors[i].currentConditions.humidity);
+                    row.find('#light').text(sensors[i].currentConditions.light);
                 }
             });
         }
