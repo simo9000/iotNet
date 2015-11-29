@@ -10,12 +10,11 @@ namespace ACN.Database
     public class dbConn : IDisposable
     {
         // members
-        private string connString;
         private SqlConnection conn;
         
         // constructor
         public dbConn(){
-            connString = ConfigurationManager.ConnectionStrings["ACN"].ConnectionString;
+            string connString = ConfigurationManager.ConnectionStrings["ACN"].ConnectionString;
             string password = ConfigurationManager.AppSettings["dbPassword"];
             connString = connString.Replace("{password}", password);
             conn = new SqlConnection(connString);

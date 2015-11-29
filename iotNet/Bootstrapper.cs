@@ -1,7 +1,9 @@
-﻿namespace ACN
-{
-    using Nancy;
+﻿
+using Nancy;
+using Nancy.Conventions;
 
+namespace ACN
+{
     public class Bootstrapper : DefaultNancyBootstrapper
     {
         // The bootstrapper enables you to reconfigure the composition of the framework,
@@ -11,6 +13,7 @@
         public Bootstrapper()
         {
             StaticConfiguration.DisableErrorTraces = false;
+            this.Conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("Scripts"));
         }
     }
 }

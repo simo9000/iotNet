@@ -5,8 +5,12 @@ namespace ACN.Objects
 {
     public class sensorData
     {
-        public DateTime timeStamp;
-        public double temperature, pressure, humdity, light;
+        private DateTime timeStamp;
+        private double temperature, pressure, humdity, light;
+        public double Temperature { get { return temperature; } }
+        public double Pressure { get { return pressure; } }
+        public double Humidity { get { return humdity; } }
+        public double Light { get { return light; } }
 
         public sensorData(DataRow row)
         {

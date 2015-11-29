@@ -2,6 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>ACN - @Model.Name</title>
+    <script src="@Path['~/Scripts/jquery-2.1.4.js']"></script>
+    <script>
+        var getNewData = function () {
+            $.ajax({
+                url: "@Path['~/Rt_values/for/@Model.Name']"
+            }).done(function (sensors) {
+                for (var i = 0; i < sensors.length ; i++) {
+                    var row = $('#' + sensors[i].id);
+                    row.find('#temperature').text(sensors[i].CurrentConditions.Temperature);
+                    row.find('#pressure').text(sensors[i].CurrentConditions.Pressure);
+                    row.find('#humidity').text(sensors[i].CurrentConditions.Humidity);
+                    row.find('#light').text(sensors[i].CurrentConditions.Light);
+                }
+            });
+        }
+
+        var setUpdateTimer = function () {
+            setTimeout(function () {
+                getNewData();
+                setUpdateTimer();
+            }, 60000);
+        }
+
+        $(document).ready(function () {
+            setUpdateTimer();
+        });
+    </script>
 </head>
 <body>
     <h3>ACN Values for @Model.Name</h3>
@@ -13,13 +40,13 @@
             <th>Humidity</th>
             <th>Light</th>
         </tr>
-        @Each.sensors
-            <tr>
-                <td>@Current.description</td>
-                <td>@Current.currentConditions.temperature</td>
-                <td>@Current.currentConditions.pressure</td>
-                <td>@Current.currentConditions.humdity</td>
-                <td>@Current.currentConditions.light</td>
+        @Each.Sensors
+            <tr id="@Current.ID">
+                <td>@Current.Description</td>
+                <td id="temperature">@Current.CurrentConditions.Temperature</td>
+                <td id="pressure">@Current.CurrentConditions.Pressure</td>
+                <td id="humidity">@Current.CurrentConditions.Humidity</td>
+                <td id="light">@Current.CurrentConditions.Light</td>
             </tr>
         @EndEach
     </table>
