@@ -10,7 +10,7 @@ namespace ACN.Modules
     public class AdminModule : NancyModule
     {
         private string responseType = null;
-        private dbConn db;
+        private dbConn_mysql db;
         private area selectedArea;
         public AdminModule()
         {
@@ -28,7 +28,7 @@ namespace ACN.Modules
         }
 
         public Negotiator getAreaListView(){
-            db = new dbConn();
+            db = new dbConn_mysql();
             string[] areas = this.BindTo(db.getAreaList());
             db.Dispose();
             db = null;

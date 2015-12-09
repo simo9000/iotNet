@@ -12,7 +12,7 @@ namespace ACN.Objects
         // private members
         private string name;
         private sensor[] sensors;
-        private dbConn db;
+        private dbConn_mysql db;
 
         // public properties
         public string Name { get { return name; } }
@@ -21,7 +21,7 @@ namespace ACN.Objects
         public area(string name)
         {
             this.name = name;
-            db = new dbConn();
+            db = new dbConn_mysql();
             DataTable rawData = db.getSensorTable(name);
             db.Dispose();
 

@@ -14,7 +14,7 @@ namespace ACN.Database
         
         // constructor
         public dbConn(){
-            string connString = ConfigurationManager.ConnectionStrings["ACN"].ConnectionString;
+            string connString = ConfigurationManager.ConnectionStrings["ACN_mysql"].ConnectionString;
             string password = ConfigurationManager.AppSettings["dbPassword"];
             connString = connString.Replace("{password}", password);
             conn = new SqlConnection(connString);

@@ -17,7 +17,7 @@ namespace ACN.Objects
 
         public static double getValue(this DataRow row, string columnName, double _default = -1)
         {
-            return row.hasColumn(columnName) && !row.isNull(columnName) ? (double)row[columnName] : _default;
+            return row.hasColumn(columnName) && !row.isNull(columnName) ? (float)row[columnName] : _default;
         }
     }
 }
